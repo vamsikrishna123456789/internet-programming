@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>REGISTER page</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #4CAF50, #2196F3); /* Gradient background */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        input[type="text"],
+        input[type="submit"] {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #2196F3; /* Blue color */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0b7dda; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Title Here</h1>
+        <form action="login.php" method="POST">
+            <label for="user">username:</label><br>
+            <input type="text" id="user" name="user"><br>
+            <label for="pass">password:</label><br>
+            <input type="text" id="pass" name="pass"><br>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+</body>
+</html>

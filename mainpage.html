@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Basket</title>
+<style>
+    .product-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .product-image {
+        width: 100px;
+        margin-right: 20px;
+    }
+    .product-details {
+        flex-grow: 1;
+    }
+    .add-to-cart {
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .add-to-cart:hover {
+        background-color: #45a049;
+    }
+    th,td,tr{
+        width: 260px;
+        height: 40px;
+    }
+</style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Team-6:Sports Basket</h1>
+<div style="display: flex;justify-content: center; align-items: center; gap: 30px;">
+<div class="product-container">
+    <img src="cricket-bat.jpeg" alt="Cricket Bat" class="product-image">
+    <div class="product-details">
+        <h3>Cricket Bat</h3>
+        <p>$100</p>
+        <button class="add-to-cart" onclick="addToCart('Cricket Bat', 100)">Add to Cart</button>
+    </div>
+</div>
+
+<div class="product-container">
+    <img src="football.jpeg" alt="Football" class="product-image">
+    <div class="product-details">
+        <h3>Football</h3>
+        <p>$50</p>
+        <button class="add-to-cart" onclick="addToCart('Football', 50)">Add to Cart</button>
+    </div>
+</div>
+
+<div class="product-container">
+    <img src="tennis-bat.jpg" alt="Tennis Bat" class="product-image">
+    <div class="product-details">
+        <h3>Tennis Bat</h3>
+        <p>$80</p>
+        <button class="add-to-cart" onclick="addToCart('Tennis Bat', 80)">Add to Cart</button>
+    </div>
+</div>
+
+<div class="product-container">
+    <img src="cricket-bat.jpeg" alt="Cricket Ball" class="product-image">
+    <div class="product-details">
+        <h3>Cricket Ball</h3>
+        <p>$5</p>
+        <button class="add-to-cart" onclick="addToCart('Cricket Ball', 5)">Add to Cart</button>
+    </div>
+</div>
+</div>
+
+<div>
+    <h3>Shopping Cart</h3>
+    <table id="cart" border="1">
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+        </tr>
+    </table>
+    <div id="totalCost"></div>
+</div><br><br>
+<center><button style="color: white; padding: 14px; background-color: rgb(0, 140, 255); border-width: 0; border-radius: 12px;">check out</button></center>
+<script>
+    let cartItems = {};
+
+    function addToCart(item, price) {
+        let quantity = prompt(`Enter quantity for ${item}:`);
+        quantity = parseInt(quantity);
+        if (isNaN(quantity) || quantity <= 0) {
+            alert("Invalid quantity. Please enter a valid number greater than 0.");
+            return;
+        }
+
+        if (cartItems[item]) {
+            cartItems[item].quantity += quantity;
+        } else {
+            cartItems[item] = { quantity: quantity, cost: 0, price: price };
+        }
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartTable = document.getElementById('cart');
+        const totalCostDisplay = document.getElementById('totalCost');
+        let totalCost = 0;
+        cartTable.innerHTML = `
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Cost</th>
+            </tr>
+        `;
+        for (let item in cartItems) {
+            const cost = cartItems[item].quantity * cartItems[item].price;
+            cartTable.innerHTML += `
+                <tr>
+                    <td>${item}</td>
+                    <td>${cartItems[item].quantity}</td>
+                    <td>$${cost}</td>
+                </tr>
+            `;
+            totalCost += cost;
+        }
+        totalCostDisplay.textContent = `Total Cost: $${totalCost.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
